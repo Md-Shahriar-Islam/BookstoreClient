@@ -1,0 +1,12 @@
+.reg {
+    width: 25%;
+    margin: 40px auto 0;
+
+}
+
+@media only screen and (max-width: 688px) {
+    .reg {
+        width: 80%;
+        margin: 40px auto 0;
+    }
+}
