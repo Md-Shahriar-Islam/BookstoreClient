@@ -1,11 +1,12 @@
 import React from 'react';
+import SocialLogIn from '../SocialLogIn/SocialLogIn';
+import { GoogleLoginButton, GitHubLoginButton } from "react-social-login-buttons"
 
 const LogIn = () => {
     return (
         <div>
-            <h1>
-                login
-            </h1>
+            <SocialLogIn></SocialLogIn>
+
         </div>
     );
 };
