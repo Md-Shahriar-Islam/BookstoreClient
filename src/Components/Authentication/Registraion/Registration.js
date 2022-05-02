@@ -2,7 +2,7 @@ import { sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
 import "./Registration.css"
@@ -61,7 +61,7 @@ const Registration = () => {
                         </Button>
                         :
                         <Button onClick={handleRegister} variant="primary" type="submit">
-                            Submit
+                            Register
                         </Button>
 
 
@@ -69,10 +69,12 @@ const Registration = () => {
                 <p>{Error}</p>
 
             </Form>
-            <h6 className="mb-2 text-center">or</h6>
+            <p className="text-center">already have an account? <Link to="/login"> LogIn</Link></p>
+            <h6 className="m-2 text-center">or</h6>
 
             <h5 className="text-center mb-2">connect with</h5>
             <hr className="w-25 mx-auto"></hr>
+
             <SocialLogIn></SocialLogIn>
 
 

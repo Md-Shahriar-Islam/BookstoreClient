@@ -9,8 +9,11 @@ import ManageItem from './Components/ManageItem/ManageItem'
 import AddItem from './Components/AddItem/AddItem'
 import LogIn from './Components/Authentication/LogIn/LogIn';
 import Registration from './Components/Authentication/Registraion/Registration'
+import RequireAuth from './Components/RequireAuth/RequireAuth';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function App() {
+
   return (
     <div>
       <Header></Header>
@@ -18,7 +21,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="blogs" element={<Blogs />} />
-        <Route path="manage" element={<ManageItem />} />
+        <Route path="manage" element=
+
+          {<RequireAuth>
+            <ManageItem />
+          </RequireAuth>
+          } />
         <Route path="add" element={<AddItem />} />
         <Route path="login" element={<LogIn />} />
         <Route path="register" element={<Registration />} />

@@ -1,8 +1,18 @@
+import { signOut } from 'firebase/auth';
 import React from 'react';
-import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import auth from '../../firebase.init';
 
 const Header = () => {
+    const [user, loading, error] = useAuthState(auth)
+    const logout = () => {
+        signOut(auth);
+    };
+    let userEmail = user.email
+    let userName = userEmail.split('@')
+
     return (
         <div>
             <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -13,16 +23,36 @@ const Header = () => {
                         <Nav className="me-auto">
                             <Nav.Link as={Link} to="/">Home</Nav.Link>
                             <Nav.Link as={Link} to="/blogs">blogs</Nav.Link>
+
                             <Nav.Link as={Link} to="/manage">Manage Items</Nav.Link>
-                            <Nav.Link as={Link} to="/add">Add Items</Nav.Link>
+                            {
+                                !user ?
+                                    <div></div>
+                                    :
+                                    <Nav.Link as={Link} to="/add">Add Items</Nav.Link>
+
+                            }
+
 
                         </Nav>
-                        <Nav>
-                            <Nav.Link as={Link} to='/login'>LogIn</Nav.Link>
-                            <Nav.Link as={Link} to="register">
-                                Register
-                            </Nav.Link>
-                        </Nav>
+                        {
+                            user ?
+                                <div>
+                                    <Button onClick={logout} className="btn btn-dark">signout<span className="text-light mx-4"
+                                    >{userName[0]}</span></Button>
+                                    <p className="text-light"></p>
+                                </div>
+
+
+                                :
+                                <Nav>
+                                    <Nav.Link as={Link} to='/login'>LogIn</Nav.Link>
+                                    <Nav.Link as={Link} to="/register">
+                                        Register
+                                    </Nav.Link>
+                                </Nav>
+                        }
+
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
