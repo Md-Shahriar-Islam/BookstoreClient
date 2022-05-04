@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
 import { GoogleLoginButton, GitHubLoginButton } from "react-social-login-buttons"
 import EmailLogIn from '../EmailLogIn/EmailLogIn';
@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 
 const LogIn = () => {
+
     return (
         <div>
             <EmailLogIn></EmailLogIn>

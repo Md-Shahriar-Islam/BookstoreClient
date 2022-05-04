@@ -1,9 +1,10 @@
 import React from 'react';
+import CardHolder from './CardHolder/CardHolder';
 
 const Home = () => {
     return (
         <div>
-            <h1>this is home</h1>
+            <CardHolder>hiiiiii</CardHolder>
         </div>
     );
 };

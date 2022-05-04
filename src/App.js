@@ -11,6 +11,7 @@ import LogIn from './Components/Authentication/LogIn/LogIn';
 import Registration from './Components/Authentication/Registraion/Registration'
 import RequireAuth from './Components/RequireAuth/RequireAuth';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Inventory from './Components/Inventory/Inventory';
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <ManageItem />
           </RequireAuth>
           } />
+        <Route path="inventory/:invetoryId" element={<Inventory />} />
         <Route path="add" element={<AddItem />} />
         <Route path="login" element={<LogIn />} />
         <Route path="register" element={<Registration />} />

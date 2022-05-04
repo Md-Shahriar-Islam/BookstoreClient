@@ -10,8 +10,12 @@ const Header = () => {
     const logout = () => {
         signOut(auth);
     };
-    let userEmail = user.email
-    let userName = userEmail.split('@')
+    let userName
+    if (user) {
+        let userEmail = user.email
+        userName = userEmail.split('@')
+    }
+
 
     return (
         <div>
@@ -39,7 +43,7 @@ const Header = () => {
                             user ?
                                 <div>
                                     <Button onClick={logout} className="btn btn-dark">signout<span className="text-light mx-4"
-                                    >{userName[0]}</span></Button>
+                                    >{userName}</span></Button>
                                     <p className="text-light"></p>
                                 </div>
 
