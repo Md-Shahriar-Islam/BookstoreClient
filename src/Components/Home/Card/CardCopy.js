@@ -13,14 +13,14 @@ const CardCopy = (props) => {
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text>
-                        <ul className="list">
-                            <li>Author:{Author}</li>
-                            <li>Genre:{Genre}</li>
-                            <li>Quantity:{quantity}</li>
-                            <li>price:{Price}</li>
-                        </ul>
+
+                        Author:{Author}<br></br>
+                        Genre:{Genre}<br></br>
+                        Quantity:{quantity}<br></br>
+                        price:{Price}<br></br>
                     </Card.Text>
-                    <Button onClick={() => navigate(`/inventory/${_id}`)} variant="primary">Go somewhere</Button>
+
+                    <Button onClick={() => navigate(`/inventory/${_id}`)} variant="primary">Details</Button>
                 </Card.Body>
             </Card>
         </div>

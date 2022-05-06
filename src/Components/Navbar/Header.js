@@ -43,7 +43,7 @@ const Header = () => {
                             user ?
                                 <div>
                                     <Button onClick={logout} className="btn btn-dark">signout<span className="text-light mx-4"
-                                    >{userName}</span></Button>
+                                    >{userName[0]}</span></Button>
                                     <p className="text-light"></p>
                                 </div>
 
