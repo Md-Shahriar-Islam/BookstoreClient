@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
+import useCustom from '../hooks/useCustom';
 import "./Inventory.css"
 
 const Inventory = () => {
@@ -8,33 +9,35 @@ const Inventory = () => {
     const navigate = useNavigate()
     console.log(params)
 
+
     const [book, setBook] = useState({})
+    const [books, setBooks] = useCustom()
+    const url = `http://localhost:5000/inventory/${params.invetoryId}`
     useEffect(() => {
-        const url = `http://localhost:5000/inventory/${params.invetoryId}`
+
         fetch(url)
             .then(res => res.json())
             .then(data => setBook(data))
-    }, [book])
+    }, books)
     const { _id, name, Author, Genere, Price, description, supplier, image } = book
     let { quantity } = book
 
     const handleDeliver = () => {
-        quantity = quantity - 1
+
+        quantity--
+        let updateQunatity = { quantity }
         console.log(quantity)
-        // fetch('https://example.com/profile', {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ quantity }),
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         console.log('Success:', data);
-        //     })
-        //     .catch((error) => {
-        //         console.error('Error:', error);
-        //     });
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updateQunatity),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
     }
     return (
 
@@ -52,7 +55,7 @@ const Inventory = () => {
                 <p> quantity:{quantity}</p>
 
                 <Button onClick={() => navigate("/manage")} >Manage</Button>
-                <Button className="mx-2 " onClick={handleDeliver}>Deliver</Button>
+                <Button className="mx-2 " onClick={() => handleDeliver()}>Deliver</Button>
 
             </div>
 

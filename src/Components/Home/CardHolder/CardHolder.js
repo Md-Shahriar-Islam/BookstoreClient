@@ -4,7 +4,7 @@ import CardCopy from '../Card/CardCopy';
 import "./CardHolder.css"
 
 const CardHolder = () => {
-    const [books, setBooks] = useCustom("http://localhost:5000/inventory")
+    const [books, setBooks] = useCustom()
 
 
     return (

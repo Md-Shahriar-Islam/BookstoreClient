@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 const AddItem = () => {
-    const [newBook, setNewBook] = useState({})
+
     const handleAddItem = (event) => {
         event.preventDefault();
         const email = event.target.email.value
@@ -13,9 +13,25 @@ const AddItem = () => {
         const description = event.target.description.value
         const quantity = event.target.quantity.value
         const price = event.target.price.value
-        setNewBook({ email, name, Genere, Author, image, description, quantity, price })
+        const newBook = { email, name, Genere, Author, image, description, quantity, price }
+        fetch('http://localhost:5000/mybook', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(newBook),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            })
+
+
     }
-    console.log(newBook)
+
 
     return (
         <div className="w-50 mx-auto mt-5">
