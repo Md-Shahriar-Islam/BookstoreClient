@@ -7,7 +7,7 @@ import Item from './Item/Item';
 const ManageItem = () => {
     const [books, setBooks] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/inventory")
+        fetch("https://lit-garden-64287.herokuapp.com/inventory")
             .then(res => res.json())
             .then(data => setBooks(data))
     }, [])

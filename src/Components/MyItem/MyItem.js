@@ -9,7 +9,7 @@ const MyItem = () => {
     const [myBook, setMyBook] = useState([])
 
     useEffect(() => {
-        const url = 'http://localhost:5000/mybook?' + new URLSearchParams({ email: user?.email }).toString()
+        const url = 'https://lit-garden-64287.herokuapp.com/mybook?' + new URLSearchParams({ email: user?.email }).toString()
         fetch(url, {
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

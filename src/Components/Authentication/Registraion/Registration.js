@@ -31,7 +31,7 @@ const Registration = () => {
     const handleRegister = async (event) => {
         event.preventDefault()
         await createUserWithEmailAndPassword(email, password)
-        fetch('http://localhost:5000/register', {
+        fetch('https://lit-garden-64287.herokuapp.com/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

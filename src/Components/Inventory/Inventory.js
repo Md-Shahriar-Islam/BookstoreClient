@@ -12,7 +12,7 @@ const Inventory = () => {
 
     const [book, setBook] = useState({})
     const [books, setBooks] = useCustom()
-    const url = `http://localhost:5000/inventory/${params.invetoryId}`
+    const url = `https://lit-garden-64287.herokuapp.com/inventory/${params.invetoryId}`
     useEffect(() => {
 
         fetch(url)

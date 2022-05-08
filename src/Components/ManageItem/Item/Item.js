@@ -8,7 +8,7 @@ const Item = (props) => {
     const handleDelete = (id) => {
         const yes = window.confirm('so you want to delete this book?')
         if (yes) {
-            fetch(`http://localhost:5000/inventory/${id}`, {
+            fetch(`https://lit-garden-64287.herokuapp.com/inventory/${id}`, {
                 method: 'DELETE',
 
             })

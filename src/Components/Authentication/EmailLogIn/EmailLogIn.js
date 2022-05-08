@@ -34,7 +34,7 @@ const EmailLogIn = () => {
     const handleLogIn = (event) => {
         event.preventDefault();
         signInWithEmailAndPassword(email, password)
-        fetch('http://localhost:5000/login', {
+        fetch('https://lit-garden-64287.herokuapp.com/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

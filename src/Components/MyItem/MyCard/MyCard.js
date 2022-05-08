@@ -6,7 +6,7 @@ const MyCard = (props) => {
     const handleDelete = (id) => {
         const yes = window.confirm('so you want to delete this book?')
         if (yes) {
-            fetch(`http://localhost:5000/mybook/${id}`, {
+            fetch(`https://lit-garden-64287.herokuapp.com/mybook/${id}`, {
                 method: 'DELETE',
 
             })

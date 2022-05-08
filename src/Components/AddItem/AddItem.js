@@ -14,7 +14,7 @@ const AddItem = () => {
         const quantity = event.target.quantity.value
         const price = event.target.price.value
         const newBook = { email, name, Genere, Author, image, description, quantity, price }
-        fetch('http://localhost:5000/mybook', {
+        fetch('https://lit-garden-64287.herokuapp.com/mybook', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
