@@ -13,6 +13,7 @@ import RequireAuth from './Components/RequireAuth/RequireAuth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Inventory from './Components/Inventory/Inventory';
 import MyItem from './Components/MyItem/MyItem';
+import Footer from './Components/Footer/Footer';
 
 function App() {
 
@@ -40,6 +41,8 @@ function App() {
         <Route path="login" element={<LogIn />} />
         <Route path="register" element={<Registration />} />
       </Routes>
+      <Footer></Footer>
+
 
     </div>
   );
