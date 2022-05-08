@@ -2,12 +2,14 @@ import { sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useCreateUserWithEmailAndPassword, useSendEmailVerification } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
 import SocialLogIn from '../SocialLogIn/SocialLogIn';
 import "./Registration.css"
 
 const Registration = () => {
+    let location = useLocation()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
@@ -15,6 +17,7 @@ const Registration = () => {
     const [sendEmailVerification, sending] = useSendEmailVerification(
         auth
     );
+    let from = location.state?.from?.pathname || "/";
     const [
         createUserWithEmailAndPassword,
         user,
@@ -24,12 +27,23 @@ const Registration = () => {
     if (error) {
         let Error = error.message
     }
-    if (user) {
-        navigate("/")
-    }
-    const handleRegister = (event) => {
+
+    const handleRegister = async (event) => {
         event.preventDefault()
-        createUserWithEmailAndPassword(email, password)
+        await createUserWithEmailAndPassword(email, password)
+        fetch('http://localhost:5000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                localStorage.setItem('accessToken', data.token)
+            })
+        navigate(from, { replace: true })
+
     }
     console.log(email)
     console.log(user)

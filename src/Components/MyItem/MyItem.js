@@ -1,25 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import CardCopy from '../Home/Card/CardCopy';
+import MyCard from './MyCard/MyCard';
 
 const MyItem = () => {
-    const [user, loading] = useAuthState(auth)
-    let email
-    if (user) {
-        email = user.email
-    }
-    console.log(user)
+    const [user, loading,] = useAuthState(auth)
     const [myBook, setMyBook] = useState([])
+
     useEffect(() => {
-        const url = 'http://localhost:5000/mybook?' + new URLSearchParams({ email }).toString()
-        fetch(url)
+        const url = 'http://localhost:5000/mybook?' + new URLSearchParams({ email: user?.email }).toString()
+        fetch(url, {
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setMyBook(data))
-    }, [])
+    }, [user])
     console.log(myBook)
+
     return (
-        <div>
-            <h1>hi</h1>
+        <div className="CardHolder">
+            {
+                myBook.map(b => <MyCard key={b._id} book={b}></MyCard>)
+            }
 
 
         </div>
