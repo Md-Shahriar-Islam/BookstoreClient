@@ -2,8 +2,12 @@
 
 Github client link
 [https://github.com/ProgrammingHeroWC4/warehouse-management-client-side-Md-Shahriar-Islam]
+
 github server link
 [https://github.com/ProgrammingHeroWC4/warehouse-management-server-side-Md-Shahriar-Islam]
+
+liveSite
+[https://bookstore-41458.web.app/]
 
 in this project i have used 
 * react icons
